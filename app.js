@@ -17,9 +17,10 @@ const client = new tmi.Client({
 
 client.connect().catch(console.error);
 client.on('chat', (channel, user, message, self) => {
+	console.log(process.env.OAUTH_TOKEN)
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
-		client.say(channel, `@${user}, heya!`);
+		client.say(channel, `@${user.username}, heya!`);
 	}
 
 	//cmd handler
