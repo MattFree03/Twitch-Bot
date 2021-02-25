@@ -17,7 +17,7 @@ const client = new tmi.Client({
 
 client.connect().catch(console.error);
 client.on('chat', (channel, user, message, self) => {
-	console.log(process.env.OAUTH_TOKEN)
+	client.say(channel, "SehjBot is connected!")
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
 		client.say(channel, `@${user.username}, heya!`);
