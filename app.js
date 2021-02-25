@@ -18,7 +18,7 @@ const client = new tmi.Client({
 client.connect().catch(console.error);
 
 client.on('connected', () => {
-	client.action('SehjBot is connected')
+	client.action(`${process.env.CHANNEL_NAME} SehjBot is now connected')
 }) 
 
 client.on('chat', (channel, user, message, self) => {
