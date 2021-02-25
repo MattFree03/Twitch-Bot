@@ -24,13 +24,13 @@ client.on('message', (channel, tags, message, self) => {
 
 	//cmd handler
 	const args = message.slice(prefix.length).trim().split(/ +/g);
-	const cmd = args.shift().toLowerCase();
-
-	try {
-		let commandFile = require(`./commands/${cmd}.js`)
-		commandFile.run(client, message, args, user, channel, self)
-	} catch (err) {
-		//client.say(channel, "Command doesn't exist.")
-		return;
-	}
+    const cmd = args.shift().toLowerCase();
+    try {
+        let commandFile = require(`./commands/${cmd}.js`)
+        commandFile.run(client, message, args, user, channel, self) 
+    } catch (err) {
+		console.log(cmd)
+		client.say(channel, "Command not found")
+        return;
+    }
 });
