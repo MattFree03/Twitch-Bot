@@ -16,7 +16,7 @@ const client = new tmi.Client({
 });
 
 client.connect().catch(console.error);
-client.on('message', (channel, tags, message, self) => {
+client.on('chat', (channel, user, message, self) => {
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
 		client.say(channel, `@${tags.username}, heya!`);
@@ -24,13 +24,11 @@ client.on('message', (channel, tags, message, self) => {
 
 	//cmd handler
 	const args = message.slice(prefix.length).trim().split(/ +/g);
-    const cmd = args.shift().toLowerCase();
-    try {
+    const cmd = args.shift().toLowerCase(); 
+	try {
         let commandFile = require(`./commands/${cmd}.js`)
-        commandFile.run(client, message, args, user, channel, self) 
+    	commandFile.run(client, message, args, user, channel, self)
     } catch (err) {
-		console.log(cmd)
-		client.say(channel, "Command not found")
         return;
-    }
+	}
 });
