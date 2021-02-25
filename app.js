@@ -16,8 +16,12 @@ const client = new tmi.Client({
 });
 
 client.connect().catch(console.error);
+
+client.on('connected', () => {
+	client.action('SehjBot is connected')
+}) 
+
 client.on('chat', (channel, user, message, self) => {
-	client.say(channel, "SehjBot is connected!")
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
 		client.say(channel, `@${user.username}, heya!`);
