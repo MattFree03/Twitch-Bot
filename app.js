@@ -19,7 +19,7 @@ client.connect().catch(console.error);
 client.on('chat', (channel, user, message, self) => {
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
-		client.say(channel, `@${tags.username}, heya!`);
+		client.say(channel, `@${user}, heya!`);
 	}
 
 	//cmd handler
