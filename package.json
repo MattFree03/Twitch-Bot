@@ -4,6 +4,7 @@
   "description": "A moderation bot for Twitch channels",
   "main": "app.js",
   "dependencies": {
+    "comfy.js": "^1.1.6",
     "dotenv": "^8.2.0",
     "tmi.js": "^1.7.2"
   },

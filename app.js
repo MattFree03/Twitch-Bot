@@ -17,14 +17,10 @@ const client = new tmi.Client({
 
 client.connect().catch(console.error);
 
-client.on('connected', () => {
-	client.action(`${process.env.CHANNEL_NAME} SehjBot is now connected`)
-}) 
-
-client.on('chat', (channel, user, message, self) => {
+client.on('chat', (channel, tags, message, self) => {
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
-		client.say(channel, `@${user.username}, heya!`);
+		client.say(channel, `@${tags.username}, heya!`);
 	}
 
 	//cmd handler
@@ -32,7 +28,7 @@ client.on('chat', (channel, user, message, self) => {
     const cmd = args.shift().toLowerCase(); 
 	try {
         let commandFile = require(`./commands/${cmd}.js`)
-    	commandFile.run(client, message, args, user, channel, self)
+    	commandFile.run(client, message, args, tags, channel, self)
     } catch (err) {
         return;
 	}
