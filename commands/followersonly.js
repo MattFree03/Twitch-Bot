@@ -5,8 +5,10 @@ exports.run = (client, message, args, user, channel, self) => {
         let amountOfTimeInt = Math.round(Number(amountOfTimeStr))
         if (typeof(amountOfTimeInt === "number")){
             client.followersonly(channel, amountOfTimeInt);
+            client.say(`@${tags.username} followers only mode has been turned on for ${amountOfTimeInt} minutes`)
         } else {
             client.followersonly(channel);
+            client.say(`@${tags.username} followers only mode has been turned on for 30 minutes`)
         }
     }
 }
