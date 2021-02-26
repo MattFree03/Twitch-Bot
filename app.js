@@ -16,7 +16,6 @@ const client = new tmi.Client({
 });
 
 client.connect().catch(console.error);
-
 client.on('chat', (channel, tags, message, self) => {
 	if(self) return;
 	if(message.toLowerCase() === '!hello') {
